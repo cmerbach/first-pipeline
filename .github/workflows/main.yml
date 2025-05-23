@@ -1,0 +1,26 @@
+name: Meine erste Pipeline
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  run-python:
+    runs-on: ubuntu-latest
+    
+    container:
+      image: ubuntu:latest
+      
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+      
+    - name: Install Python
+      run: |
+        apt-get update
+        apt-get install -y python3
+        
+    - name: Run Python script
+      run: python3 hello_world.py
